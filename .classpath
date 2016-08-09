@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="F:/HackOutWest2016/sidewaysinfinite/lib/spotify-web-api-java-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/spotify-web-api-java-1.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
