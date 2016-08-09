@@ -1,6 +1,7 @@
 import java.util.List;
 
 import com.wrapper.spotify.models.SimpleTrack;
+import com.wrapper.spotify.models.Track;
 
 import ApiHack.APIAuthentication;
 
@@ -11,9 +12,9 @@ public class TempoTester{
 		//OSCLoop.loopetyLoop();
 		
 		
-		List<SimpleTrack> tracks = TrackLister.getTrackListFromArtist("4Z8W4fKeB5YxbusRsdQVPb");
+		List<Track> tracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");//.getTrackListFromArtist("4Z8W4fKeB5YxbusRsdQVPb");
 		System.out.println("ALL " + tracks.size());
-		List<SimpleTrack> tempoTracks = TrackLister.getTracksAboveTempo(tracks, 100);
+		List<Track> tempoTracks = TrackLister.getTracksAboveTempo(tracks, 100);
 		System.out.println("HIGH TEMPO " + tempoTracks.size());
 	}
 }

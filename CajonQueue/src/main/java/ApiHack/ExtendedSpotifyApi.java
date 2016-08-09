@@ -433,8 +433,8 @@ public class ExtendedSpotifyApi implements NewTokenListener{
 	   * @param playlistId The playlist's id.
 	   * @return A builder object that can be used to build a request to retrieve playlist tracks.
 	   */
-	  public PlaylistTracksRequest.Builder getPlaylistTracks(String userId, String playlistId) {
-	    final PlaylistTracksRequest.Builder builder = PlaylistTracksRequest.builder();
+	  public EPlaylistTracksRequest.Builder getPlaylistTracks(String userId, String playlistId) {
+	    final EPlaylistTracksRequest.Builder builder = EPlaylistTracksRequest.builder();
 	    setDefaults(builder);
 	    builder.path("/v1/users/" + userId + "/playlists/" + playlistId + "/tracks");
 	    return builder;

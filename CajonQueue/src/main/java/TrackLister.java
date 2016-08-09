@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import com.wrapper.spotify.Api;
 import com.wrapper.spotify.models.Album;
+import com.wrapper.spotify.models.PlaylistTrack;
 import com.wrapper.spotify.models.SimpleAlbum;
 import com.wrapper.spotify.models.SimpleTrack;
 import com.wrapper.spotify.models.Track;
@@ -16,13 +16,19 @@ public class TrackLister {
 	private static ArrayList<NewTokenListener> listeners = new ArrayList<NewTokenListener>();
 	
 	
-	public static List<SimpleTrack> getTracksAboveTempo(List<SimpleTrack> tracks, int tempo) {
+	public static List<Track> getTracksAboveTempo(List<Track> tracks, int tempo) {
 		final ExtendedSpotifyApi api = ExtendedSpotifyApi.DEFAULT_API;
 		listeners.add(api);
 		APIAuthentication.setup(listeners);
-		List<SimpleTrack> tempoTracks = new ArrayList<SimpleTrack>();
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Track> tempoTracks = new ArrayList<Track>();
 		
-		for(SimpleTrack track: tracks) {
+		for(Track track: tracks) {
 			System.out.println(track.getName());
 			try{
 				AudioFeatures features = api.getAudioFeatures(track.getId()).build().get();
@@ -36,6 +42,24 @@ public class TrackLister {
 			}
 		}
 		return tempoTracks;
+	}
+	
+	public static List<Track> getTracksFromPlaylist(String userId, String playlistId){
+		final ExtendedSpotifyApi api = ExtendedSpotifyApi.DEFAULT_API;
+		listeners.add(api);
+		APIAuthentication.setup(listeners);
+		List<Track> tracks = new ArrayList<Track>();
+		try{
+			List<PlaylistTrack> temp = api.getPlaylistTracks(userId, playlistId).build().get().getItems();
+			
+			for (PlaylistTrack playlistTrack : temp) {
+				tracks.add(playlistTrack.getTrack());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return tracks;
 	}
 	
 	
