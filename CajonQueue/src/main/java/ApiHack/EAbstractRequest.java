@@ -3,6 +3,7 @@ package ApiHack;
 import com.wrapper.spotify.HttpManager;
 import com.wrapper.spotify.UrlUtil;
 import com.wrapper.spotify.UtilProtos.Url;
+import com.wrapper.spotify.UtilProtos.Url.Scheme;
 import com.wrapper.spotify.exceptions.WebApiException;
 
 import net.sf.json.JSON;
@@ -61,6 +62,7 @@ public abstract class EAbstractRequest implements ERequest {
       httpManager = builder.httpManager;
     }
 
+    builder.scheme = Scheme.HTTPS;
     Url.Builder urlBuilder = Url.newBuilder()
              .setScheme(builder.scheme)
              .setHost(builder.host)
