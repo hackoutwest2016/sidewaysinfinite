@@ -17,7 +17,9 @@ public class CajonListener implements OSCListener{
 	}
 
 	public void acceptMessage(Date time, OSCMessage OSCContent) {
+		receivedMessages.clear();
 		receivedMessages.add(new MessageObject(messageNumber, time, OSCContent));
+		updateListeners();
 	}
 	
 	public void updateListeners(){

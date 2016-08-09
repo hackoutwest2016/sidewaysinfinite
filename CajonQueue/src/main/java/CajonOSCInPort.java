@@ -25,12 +25,5 @@ public class CajonOSCInPort {
 		}
 		
 	}
-	
-	public getMessageList(){
-		
-	}
-	
-	
-	
-	
+
 }
