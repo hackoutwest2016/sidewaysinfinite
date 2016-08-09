@@ -1,1 +1,6 @@
 /bin/
+.DS_Store
+.metadata/.plugins/org.eclipse.core.resources/.projects/*/.location
+.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat
+.recommenders/
+RemoteSystemsTempFiles/
