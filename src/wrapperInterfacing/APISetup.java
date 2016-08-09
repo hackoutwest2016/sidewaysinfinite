@@ -24,8 +24,8 @@ public class APISetup {
     /* Application details necessary to get an access token */
     final String clientId = "<342da21c17ca497d8940f73ecfc3a88f>";
     final String clientSecret = "<78c8cdbe253649f0b28335a6e35bb18a>";
-    final String code = "<insert code>";
-    final String redirectUri = "<insert redirect URI>";
+    final String code = "<42>";
+    final String redirectUri = "<CajunQueue://callback>";
 
     /* Create a default API instance that will be used to make requests to Spotify */
     final Api api = Api.builder()
@@ -46,6 +46,10 @@ public class APISetup {
         System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
         System.out.println("The access token expires in " + authorizationCodeCredentials.getExpiresIn() + " seconds");
         System.out.println("Luckily, I can refresh it using this refresh token! " + authorizationCodeCredentials.getRefreshToken());
+      
+        /* Set the access token and refresh token so that they are used whenever needed */
+        api.setAccessToken(authorizationCodeCredentials.getAccessToken());
+        api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
       }
 
       @Override
