@@ -19,7 +19,7 @@ import static junit.framework.TestCase.fail;
  */
 public class APISetup {
 
-  public static void main(String[] args) {
+  public static void setup() {
 
     /* Application details necessary to get an access token */
     final String clientId = "<342da21c17ca497d8940f73ecfc3a88f>";
