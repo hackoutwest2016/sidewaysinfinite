@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class OSCLoopClass implements NewMessageListener{
 	
@@ -14,7 +15,10 @@ public class OSCLoopClass implements NewMessageListener{
 		
 	public void onNewMessage(ArrayList<MessageObject> l) {
 		for (MessageObject messageObject : l) {
-			System.out.println(messageObject.getMessageContent().toString());
+			List<Object> temp = messageObject.getMessageContent().getArguments();
+			for (Object object : temp) {
+				System.out.println(object.toString());
+			}
 		}
 	}
 

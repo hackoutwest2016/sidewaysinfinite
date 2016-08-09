@@ -31,7 +31,6 @@ public class APIAuthentication {
 
     /* Add callbacks to handle success and failure */
     Futures.addCallback(authorizationCodeCredentialsFuture, new FutureCallback<AuthorizationCodeCredentials>() {
-      @Override
       public void onSuccess(AuthorizationCodeCredentials authorizationCodeCredentials) {
         /* The tokens were retrieved successfully! */
         System.out.println("Successfully retrieved an access token! " + authorizationCodeCredentials.getAccessToken());
@@ -43,7 +42,6 @@ public class APIAuthentication {
         api.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
       }
 
-      @Override
       public void onFailure(Throwable throwable) {
         /* Let's say that the client id is invalid, or the code has been used more than once,
          * the request will fail. Why it fails is written in the throwable's message. */
