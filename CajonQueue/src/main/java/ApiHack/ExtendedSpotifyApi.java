@@ -244,8 +244,8 @@ public class ExtendedSpotifyApi implements NewTokenListener{
 	   * @param id The base62 id of the album you're trying to retrieve.
 	   * @return An {AlbumRequest.Builder} instance.
 	   */
-	  public AlbumRequest.Builder getAlbum(String id) {
-	    AlbumRequest.Builder builder = AlbumRequest.builder();
+	  public EAlbumRequest.Builder getAlbum(String id) {
+	    EAlbumRequest.Builder builder = EAlbumRequest.builder();
 	    setDefaults(builder);
 	    builder.id(id);
 	    return builder;
