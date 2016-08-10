@@ -9,46 +9,7 @@
       <AnchorPane id="logopane" prefHeight="390.0" prefWidth="800.0" stylesheets="@../../../style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="6.0" layoutY="368.0" prefHeight="196.0" prefWidth="795.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="45.0" layoutY="19.0" text="Detected" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="19.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="465.0" layoutY="19.0" text="Playing" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="19.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="87.0" layoutY="77.0" text="Song" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="77.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="88.0" layoutY="134.0" text="Artist" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="134.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="detectedTempo" layoutX="200.0" layoutY="19.0" text="TEMPO" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="19.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="playingTempo" layoutX="564.0" layoutY="19.0" text="TEMPO" AnchorPane.topAnchor="19.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="songName" layoutX="200.0" layoutY="77.0" text="TEMPO" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="77.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="artistName" layoutX="200.0" layoutY="134.0" text="TEMPO" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="134.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -39,8 +39,6 @@ public class MainScene extends Application implements NewMessageListener {
         
         mediaView = new MediaView(null);
 		((AnchorPane)scene.getRoot()).getChildren().add(mediaView);
-	
-        onNewMessage(null);
         
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -58,7 +56,9 @@ public class MainScene extends Application implements NewMessageListener {
 		MediaPlayer nextTrack = controller.getNextTrack();
 		
 		if(nextTrack!= null) {
-			nextTrack.setOnEndOfMedia(new Runnable() {
+			nextTrack.setOnEndOfMedia(
+					
+					new Runnable() {
 				
 				public void run() {
 					playNextTrack();
@@ -75,11 +75,7 @@ public class MainScene extends Application implements NewMessageListener {
 	
 		int tempo = Integer.parseInt(tmp.substring(1, tmp.indexOf(".")));
 		
-		MediaController.getInstance().getDetectedTempo().setText(tempo + "");
-		
 		Track track = TrackLister.getClosestTempoTrack(playlistTracks, tempo);
-		MediaController.getInstance().getSongName().setText(track.getName());
-		MediaController.getInstance().getArtistName().setText(track.getArtists().get(0).getName());
 
 		MediaController.getInstance().queueNewTrack(track);
 		
