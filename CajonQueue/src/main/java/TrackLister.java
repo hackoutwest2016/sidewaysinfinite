@@ -45,6 +45,8 @@ public class TrackLister {
 				e.printStackTrace();
 			}
 		}
+
+		MediaController.getInstance().getPlayingTempo().setText(bestTempo+"");
 		
 		return bestTrack;
 	}
