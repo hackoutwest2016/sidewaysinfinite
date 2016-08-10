@@ -1,19 +1,17 @@
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.wrapper.spotify.models.Track;
 
-import IO.IO;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
@@ -29,9 +27,13 @@ public class MainScene extends Application implements NewMessageListener {
 		controller = MediaController.getInstance();
 		playlistTracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");
         
-        Parent root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("MainScene.fxml")
+        );
+        loader.setController(MediaController.getInstance());
+        Parent root = loader.load();
         
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 800, 564);
         primaryStage.setTitle("BeatRamble");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -56,6 +58,7 @@ public class MainScene extends Application implements NewMessageListener {
 	private static void playNextTrack() {
 		System.out.println("PLAYING NEXT TRACK!");
 		MediaPlayer nextTrack = controller.getNextTrack();
+		
 		if(nextTrack!= null) {
 			nextTrack.setOnEndOfMedia(new Runnable() {
 				
@@ -71,11 +74,14 @@ public class MainScene extends Application implements NewMessageListener {
 
 	public void onNewMessage(ArrayList<MessageObject> l) {
 		String tmp = l.get(0).getMessageContent().getArguments().toString();
-		System.out.println("THERE BE STUFF HAPPENING YO: " + tmp);
+	
 		int tempo = Integer.parseInt(tmp.substring(1, tmp.indexOf(".")));
-		System.out.println("THERE BE STUFF HAPPENING YO: " + tempo);
+		
+		MediaController.getInstance().getDetectedTempo().setText(tempo + "");
+		
 		Track track = TrackLister.getClosestTempoTrack(playlistTracks, tempo);
-		System.out.println(track.getName());
+		MediaController.getInstance().getSongName().setText(track.getName());
+		MediaController.getInstance().getSongName().setText(track.getArtists().get(0).getName());
 		MediaController.getInstance().queueNewTrack(track);
 		
 		playNextTrack();

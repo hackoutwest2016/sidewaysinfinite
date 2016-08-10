@@ -39,7 +39,6 @@ public class TrackLister {
 				float currTempo = features.getTempo();
 				
 				if(Math.abs(targetTempo - currTempo) <= Math.abs(targetTempo - bestTempo)){
-					System.out.println("BestTempo:" + bestTempo + " first: " + Math.abs(targetTempo - currTempo) + " second: " + Math.abs(targetTempo - bestTempo));
 					bestTrack = track;
 					bestTempo = currTempo;
 				}
@@ -48,6 +47,7 @@ public class TrackLister {
 				e.printStackTrace();
 			}
 		}
+		MediaController.getInstance().getPlayingTempo().setText(bestTempo+"");
 		return bestTrack;
 	}
 	

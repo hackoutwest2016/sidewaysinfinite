@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 import com.wrapper.spotify.models.Track;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -9,6 +11,29 @@ public class MediaController {
 
 	private static MediaController controller;
 	private ArrayList<MediaPlayer> queue;
+	
+	@FXML private Label detectedTempo; 
+	public Label getDetectedTempo() {
+		return detectedTempo;
+	}
+
+	@FXML private Label playingTempo;
+	public Label getPlayingTempo() {
+		return playingTempo;
+	}
+
+
+	public Label getSongName() {
+		return songName;
+	}
+
+
+	public Label getArtistName() {
+		return artistName;
+	}
+
+	@FXML private Label songName;
+	@FXML private Label artistName;
 	
 	public static MediaController getInstance(){
 		if(controller==null){

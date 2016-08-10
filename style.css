@@ -1,6 +1,5 @@
 #logopane{
     -fx-background-image: url("logo.png");
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 900 506;
+    -fx-background-repeat: stretch; 
     -fx-background-position: center center;
 }
