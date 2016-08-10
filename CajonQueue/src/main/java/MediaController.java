@@ -24,7 +24,10 @@ public class MediaController {
 	}
 	
 	public void queueNewTrack(Track track){
-		String url = "http://d318706lgtcm8e.cloudfront.net/mp3-preview/f454c8224828e21fa146af84916fd22cb89cedc6";//track.getPreviewUrl();
+		String url = track.getPreviewUrl();
+		System.out.println(url);
+		url = url.substring(0, 4) + url.substring(5);
+		System.out.println(url);
 		Media preview = new Media(url);
 		MediaPlayer mediaPlayer = new MediaPlayer(preview);
 		queue.add(mediaPlayer);
@@ -33,6 +36,6 @@ public class MediaController {
 	public MediaPlayer getNextTrack(){
 		if(queue.isEmpty()) return null;
 		
-		return queue.remove(queue.size()-1);
+		return queue.remove(0);
 	}
 }

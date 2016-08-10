@@ -29,7 +29,6 @@ public class MainScene extends Application implements NewMessageListener {
         mediaView = new MediaView(null);
 		((Group)scene.getRoot()).getChildren().add(mediaView);
 		
-        onNewMessage(null);
         // TODO: Make this actually work.
 		root.setStyle("-fx-background-image: url('img/logo.png'); " +
 		           "-fx-background-position: center center; " +
@@ -63,11 +62,14 @@ public class MainScene extends Application implements NewMessageListener {
 	}
 
 	public void onNewMessage(ArrayList<MessageObject> l) {
-		Track tempoTrack1 = TrackLister.getClosestTempoTrack(playlistTracks, 100);
-		Track tempoTrack2 = TrackLister.getClosestTempoTrack(playlistTracks, 50);
+		String tmp = l.get(0).getMessageContent().getArguments().toString();
+		System.out.println("THERE BE STUFF HAPPENING YO: " + tmp);
+		int tempo = Integer.parseInt(tmp.substring(1, tmp.indexOf(".")));
+		System.out.println("THERE BE STUFF HAPPENING YO: " + tempo);
+		Track track = TrackLister.getClosestTempoTrack(playlistTracks, tempo);
+		System.out.println(track.getName());
+		MediaController.getInstance().queueNewTrack(track);
 		
-		controller.queueNewTrack(tempoTrack1);
-		controller.queueNewTrack(tempoTrack2);
 		playNextTrack();
 		
 	}

@@ -10,7 +10,7 @@ public class CajonOSCInPort {
 	//TODO Set charset if required - if required then update constructor to include
 	private Charset charset;
 	//TODO Set addressSelector
-	private String addressSelector = "/osc-setup";
+	private String addressSelector = "/osc-tempo";
 
 	public CajonOSCInPort(NewMessageListener MainFileThing) {
 		super();
