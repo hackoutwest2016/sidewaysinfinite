@@ -26,9 +26,7 @@ public class TrackLister {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		System.out.println(tracks.size());
-		
+				
 		Track bestTrack = tracks.get(0);
 		float bestTempo = 10000;
 		
@@ -37,9 +35,8 @@ public class TrackLister {
 			try{
 				AudioFeatures features = api.getAudioFeatures(track.getId()).build().get();
 				float currTempo = features.getTempo();
-				
-				if(Math.abs(targetTempo - currTempo) <= Math.abs(targetTempo - bestTempo)){
-					System.out.println("BestTempo:" + bestTempo + " first: " + Math.abs(targetTempo - currTempo) + " second: " + Math.abs(targetTempo - bestTempo));
+								
+				if(Math.abs(targetTempo - currTempo) < Math.abs(targetTempo - bestTempo)){
 					bestTrack = track;
 					bestTempo = currTempo;
 				}
@@ -48,6 +45,8 @@ public class TrackLister {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println("\n BEST SONG" + bestTempo + " " + bestTrack.getName() + " " + bestTrack.getArtists().get(0).getName());
 		return bestTrack;
 	}
 	

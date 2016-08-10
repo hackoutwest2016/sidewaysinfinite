@@ -21,7 +21,8 @@ public class MainScene extends Application implements NewMessageListener {
 	@Override
 	public void start(Stage primaryStage) {
 		controller = MediaController.getInstance();
-		playlistTracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");
+		playlistTracks = TrackLister.getTracksFromPlaylist("dealerpriest", "7jRNmBtd06qUw4sOstXyfT");
+		
 		
         primaryStage.setTitle("BeatRamble");
         Group root = new Group();
@@ -63,11 +64,10 @@ public class MainScene extends Application implements NewMessageListener {
 
 	public void onNewMessage(ArrayList<MessageObject> l) {
 		String tmp = l.get(0).getMessageContent().getArguments().toString();
-		System.out.println("THERE BE STUFF HAPPENING YO: " + tmp);
+		System.out.println("Received tempo: " + tmp);
 		int tempo = Integer.parseInt(tmp.substring(1, tmp.indexOf(".")));
-		System.out.println("THERE BE STUFF HAPPENING YO: " + tempo);
 		Track track = TrackLister.getClosestTempoTrack(playlistTracks, tempo);
-		System.out.println(track.getName());
+		System.out.print(track.getName() + " ");
 		MediaController.getInstance().queueNewTrack(track);
 		
 		playNextTrack();
