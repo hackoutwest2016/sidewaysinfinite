@@ -1,4 +1,5 @@
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import IO.IO;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
@@ -24,8 +26,21 @@ public class MainScene extends Application implements NewMessageListener {
 		playlistTracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");
 		
         primaryStage.setTitle("BeatRamble");
-        Group root = new Group();
+        StackPane root = new StackPane();
+        root.setId("logoPane");
         Scene scene = new Scene(root, 540, 210);
+        
+        URL u = this.getClass().getResource("styles/style.css");
+        String r =  this.getClass().getResource("style.css").toExternalForm();
+        
+        scene.getStylesheets().addAll(
+        		this.getClass()
+        		.getResource("style.css")
+        		.toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+        
         mediaView = new MediaView(null);
 		((Group)scene.getRoot()).getChildren().add(mediaView);
 		
