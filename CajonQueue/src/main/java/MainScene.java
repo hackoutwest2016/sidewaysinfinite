@@ -6,11 +6,9 @@ import java.util.List;
 import com.wrapper.spotify.models.Track;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -25,13 +23,13 @@ public class MainScene extends Application implements NewMessageListener {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		controller = MediaController.getInstance();
-		playlistTracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");
-        
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("MainScene.fxml")
-        );
-        loader.setController(MediaController.getInstance());
-        Parent root = loader.load();
+		playlistTracks = TrackLister.getTracksFromPlaylist("dealerpriest", "7jRNmBtd06qUw4sOstXyfT");
+		
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("MainScene.fxml")
+				);
+		loader.setController(MediaController.getInstance());
+		Parent root = loader.load();
         
         Scene scene = new Scene(root, 800, 564);
         primaryStage.setTitle("BeatRamble");
@@ -81,7 +79,8 @@ public class MainScene extends Application implements NewMessageListener {
 		
 		Track track = TrackLister.getClosestTempoTrack(playlistTracks, tempo);
 		MediaController.getInstance().getSongName().setText(track.getName());
-		MediaController.getInstance().getSongName().setText(track.getArtists().get(0).getName());
+		MediaController.getInstance().getArtistName().setText(track.getArtists().get(0).getName());
+
 		MediaController.getInstance().queueNewTrack(track);
 		
 		playNextTrack();
