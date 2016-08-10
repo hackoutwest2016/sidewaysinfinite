@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +8,11 @@ import com.wrapper.spotify.models.Track;
 
 import IO.IO;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -21,34 +25,22 @@ public class MainScene extends Application implements NewMessageListener {
 	private CajonOSCInPort inPort = new CajonOSCInPort(this);
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		controller = MediaController.getInstance();
 		playlistTracks = TrackLister.getTracksFromPlaylist("hannamaterne", "7nLf3xNGvhPwkbuOUmHfaq");
-		
+        
+        Parent root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        
+        Scene scene = new Scene(root);
         primaryStage.setTitle("BeatRamble");
-        StackPane root = new StackPane();
-        root.setId("logoPane");
-        Scene scene = new Scene(root, 540, 210);
-        
-        URL u = this.getClass().getResource("styles/style.css");
-        String r =  this.getClass().getResource("style.css").toExternalForm();
-        
-        scene.getStylesheets().addAll(
-        		this.getClass()
-        		.getResource("style.css")
-        		.toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
         
         
         mediaView = new MediaView(null);
-		((Group)scene.getRoot()).getChildren().add(mediaView);
+		((AnchorPane)scene.getRoot()).getChildren().add(mediaView);
 		
         onNewMessage(null);
-        // TODO: Make this actually work.
-		root.setStyle("-fx-background-image: url('img/logo.png'); " +
-		           "-fx-background-position: center center; " +
-		           "-fx-background-repeat: stretch;");
         
         primaryStage.setScene(scene);
         primaryStage.show();
