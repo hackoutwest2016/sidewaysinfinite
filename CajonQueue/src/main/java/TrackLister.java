@@ -16,7 +16,7 @@ public class TrackLister {
 	private static ArrayList<NewTokenListener> listeners = new ArrayList<NewTokenListener>();
 	
 	
-	public static List<Track> getTracksAboveTempo(List<Track> tracks, int tempo) {
+	public static Track getClosestTempoTrack(List<Track> tracks, int targetTempo) {
 		final ExtendedSpotifyApi api = ExtendedSpotifyApi.DEFAULT_API;
 		listeners.add(api);
 		APIAuthentication.setup(listeners);
@@ -26,22 +26,25 @@ public class TrackLister {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		List<Track> tempoTracks = new ArrayList<Track>();
+		
+		Track bestTrack = tracks.get(0);
+		float bestTempo = -1;
+		
 		
 		for(Track track: tracks) {
-			System.out.println(track.getName());
 			try{
 				AudioFeatures features = api.getAudioFeatures(track.getId()).build().get();
-				System.out.println(features.getTempo());
-				if(features.getTempo()>=tempo){
-					tempoTracks.add(track);
+				float currTempo = features.getTempo();
+				
+				if(Math.abs(targetTempo - currTempo) < Math.abs(targetTempo - bestTempo)){
+					bestTrack = track;
 				}
 				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return tempoTracks;
+		return bestTrack;
 	}
 	
 	public static List<Track> getTracksFromPlaylist(String userId, String playlistId){
